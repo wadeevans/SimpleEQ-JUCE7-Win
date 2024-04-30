@@ -123,7 +123,9 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
 
     auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
 
-    leftLowCut.setBypassed<0>(true);
+    updateCutFilter(leftLowCut, cutCoefficients, chainSettings);
+
+    /*leftLowCut.setBypassed<0>(true);
     leftLowCut.setBypassed<1>(true);
     leftLowCut.setBypassed<2>(true);
     leftLowCut.setBypassed<3>(true);
@@ -170,11 +172,13 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
         break;
     }
        
-    }
+    }*/
 
     auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
 
-    rightLowCut.setBypassed<0>(true);
+    updateCutFilter(rightLowCut, cutCoefficients, chainSettings);
+
+    /*rightLowCut.setBypassed<0>(true);
     rightLowCut.setBypassed<1>(true);
     rightLowCut.setBypassed<2>(true);
     rightLowCut.setBypassed<3>(true);
@@ -222,7 +226,7 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
         break;
     }
 
-    }
+    }*/
 
 
 }
@@ -291,7 +295,10 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
 
     auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
 
-    leftLowCut.setBypassed<0>(true);
+    // updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
+    updateCutFilter(leftLowCut, cutCoefficients, chainSettings);
+
+    /*leftLowCut.setBypassed<0>(true);
     leftLowCut.setBypassed<1>(true);
     leftLowCut.setBypassed<2>(true);
     leftLowCut.setBypassed<3>(true);
@@ -338,11 +345,14 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
         break;
     }
 
-    }
+    }*/
 
     auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
 
-    rightLowCut.setBypassed<0>(true);
+    updateCutFilter(rightLowCut, cutCoefficients, chainSettings);
+
+
+    /*rightLowCut.setBypassed<0>(true);
     rightLowCut.setBypassed<1>(true);
     rightLowCut.setBypassed<2>(true);
     rightLowCut.setBypassed<3>(true);
@@ -390,7 +400,7 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
         break;
     }
 
-    }
+    }*/
 
     juce::dsp::AudioBlock<float> block(buffer);
 
