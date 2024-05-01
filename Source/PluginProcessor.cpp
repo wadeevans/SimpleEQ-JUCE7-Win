@@ -123,7 +123,7 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
 
     auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
 
-    updateCutFilter(leftLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
 
     /*leftLowCut.setBypassed<0>(true);
     leftLowCut.setBypassed<1>(true);
@@ -176,7 +176,7 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
 
     auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
 
-    updateCutFilter(rightLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(rightLowCut, cutCoefficients, chainSettings.lowCutSlope);
 
     /*rightLowCut.setBypassed<0>(true);
     rightLowCut.setBypassed<1>(true);
@@ -296,7 +296,7 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
 
     // updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
-    updateCutFilter(leftLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
 
     /*leftLowCut.setBypassed<0>(true);
     leftLowCut.setBypassed<1>(true);
@@ -349,7 +349,7 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
 
     auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
 
-    updateCutFilter(rightLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(rightLowCut, cutCoefficients, chainSettings.lowCutSlope);
 
 
     /*rightLowCut.setBypassed<0>(true);
